@@ -1,4 +1,4 @@
-## Import required libraries.
+## Imports required libraries.
 from astropy.io import ascii
 from astropy.table import Table
 import numpy as np
@@ -30,10 +30,10 @@ Total = len(gender)
 print ( '\n', 'Number: ', Total, '\n' )
 
 
-# ~ ## Prints the column of data being analysed in the particular run.
-# ~ print ( '\n', 'All data...' )
+## Prints the column of data being analysed in the particular run.
+print ( '\n', 'All data...' )
 # ~ print ( '\n',        gender, '\n' )
-# ~ print ( '\n',      edu_qual, '\n' )
+print ( '\n',      edu_qual, '\n' )
 # ~ print ( '\n',    edu_detail, '\n' )
 # ~ print ( '\n',     exp_years, '\n' )
 # ~ print ( '\n',     curr_work, '\n' )
@@ -45,10 +45,10 @@ print ( '\n', 'Number: ', Total, '\n' )
 # ~ print ( '\n', frst_sal_nego, '\n' )
 
 
-# ~ ## Prints the unique entries in the column.
-# ~ print ( '\n\n\n', 'Unique data...' )
+## Prints the unique entries in the column.
+print ( '\n\n\n', 'Unique data...' )
 # ~ print ( '\n', np.unique(       gender), '\n' )
-# ~ print ( '\n', np.unique(     edu_qual), '\n' )
+print ( '\n', np.unique(     edu_qual), '\n' )
 # ~ print ( '\n', np.unique(   edu_detail), '\n' )
 # ~ print ( '\n', np.unique(    exp_years), '\n' )
 # ~ print ( '\n', np.unique(    curr_work), '\n' )
@@ -64,7 +64,6 @@ print ( '\n', 'Number: ', Total, '\n' )
 ## Returns the numbers array containing the frequency of each unique entry in that column, and the respective percentages in another array.
 def percentage( array, total ):
 	'''
-	
 	Parameters:
 	array: The array of data that needs the analysis.
 	total: The sample size against which percentages need to be calculated.
@@ -86,6 +85,7 @@ def percentage( array, total ):
 		per = np.round( 100*num / total, 1 )
 		print ('Percentage:', per)
 		percentage_array[k] = per
+	numbers_array = np.asarray(numbers_array, dtype = 'int')
 	return (numbers_array, percentage_array)
 
 
@@ -98,12 +98,12 @@ def percentage( array, total ):
 # ~ results = percentage( full_org     , Total )
 # ~ results = percentage( curr_sal_ok  , Total )
 # ~ results = percentage( curr_sal_nego, Total )
-# ~ results = percentage( frst_sal_nego, Total )
-results = percentage( gender       , Total )
+results = percentage( frst_sal_nego, Total )
+# ~ results = percentage( gender       , Total )
 
 
 ## Extracts the numbers array and forces it to be an integer array, and the percentages array.
-numbers_array    = results[0]; numbers_array = np.asarray(numbers_array, dtype = 'int')
+numbers_array    = results[0]
 percentage_array = results[1]
 
 ## Prints the two arrays.
@@ -125,14 +125,19 @@ print ( '\n\n\n\n' )
 # ~ ax.pie( sizes, labels=labels, autopct = '%1.1f%%' )
 # ~ ax.axis('equal')
 # ~ plt.tight_layout()
+# ~ #plt.savefig('./../plots/experience--piechart.pdf')
+# ~ #plt.savefig('./../plots/remuneration_OK--piechart.pdf')
+# ~ #plt.savefig('./../plots/negotiation_now--piechart.pdf')
+# ~ #plt.savefig('./../plots/negotiation_first--piechart.pdf')
+# ~ #plt.clf()
+# ~ #plt.close()
 # ~ plt.show()
 
 
 
-
+## Selects those elements of all the input arrays depending on the conditional indices input.
 def select( ind ):
     '''
-    
     Parameters:
     ind: The array of indices with the full dataset needs to be sliced.
     
@@ -166,33 +171,38 @@ full_timer_curr_sal_nego = full_timer_single_org[9]
 full_timer_frst_sal_nego = full_timer_single_org[10]
 
 
-# ~ ## Runs the function 'percentage' to calulate the numbers and percentages on the sliced data.
-# ~ results = percentage( full_timer_full_salary, l )
-# ~ #results = percentage( full_timer_full_org   , l )
+## Runs the function 'percentage' to calulate the numbers and percentages on the sliced data.
+results = percentage( full_timer_full_salary, l )
+#results = percentage( full_timer_full_org   , l )
 
-# ~ ## Captures the data into two separate arrays.
-# ~ numbers_array    = results[0]; numbers_array = np.asarray(numbers_array, dtype = 'int')
-# ~ percentage_array = results[1]
-# ~ ## Prints them.
-# ~ print ( '\n')
-# ~ print ( 'Numbers    : ', numbers_array )
-# ~ print ( 'Percentages: ', percentage_array)
-# ~ print ( 'Total      : ', np.sum(numbers_array) )
-# ~ print ( '\n' )
+## Captures the data into two separate arrays.
+numbers_array    = results[0]
+percentage_array = results[1]
+## Prints them.
+print ( '\n')
+print ( 'Numbers    : ', numbers_array )
+print ( 'Percentages: ', percentage_array)
+print ( 'Total      : ', np.sum(numbers_array) )
+print ( '\n' )
 
 
 # ~ ## Plots histogram of full-timers' salaries.
 # ~ labels, counts = np.unique( full_timer_full_salary, return_counts=True )
 # ~ inds = [6, 2, 3, 4, 1, 0, 5]
-# ~ labels = labels[inds]
+# ~ labels = labels[inds]; labels[0] = '<25 K'; labels[-1] = '>2 Lacs'
 # ~ counts = counts[inds]
 # ~ yticks = np.arange(1, 20, 2)
 # ~ plt.bar( labels, counts )
 # ~ plt.gca().set_xticks(labels)
 # ~ plt.gca().set_yticks(yticks)
 # ~ plt.grid()
+# ~ plt.xlabel('[Indian Rupees]', labelpad=5)
+# ~ plt.ylabel('Number of respondents')
 # ~ plt.tight_layout()
-# ~ plt.show()
+# ~ plt.savefig('./../plots/full_timerS_salaries--histogram.pdf')
+# ~ plt.clf()
+# ~ plt.close()
+# ~ #plt.show()
 
 
 # ~ ## Plotting histogram of full-timers' funding agency types.
@@ -205,6 +215,7 @@ full_timer_frst_sal_nego = full_timer_single_org[10]
 # ~ plt.gca().set_xticks(labels)
 # ~ plt.gca().set_yticks(yticks)
 # ~ plt.grid()
+# ~ plt.ylabel('Number of respondents')
 # ~ plt.tight_layout()
 # ~ plt.show()
 
