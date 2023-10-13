@@ -7,3 +7,7 @@ calculations.py: Carries out the required calculations and creates the plots.
 correlations.py: Creates heatmpas of educational qualification and work experience to check if they correlate against the full-timers' salaries.
 
 comparisons.py: Creates a comparison plot of the negotiation levels in the first assignment/job versus current assignment/job.
+
+freelance_general.py: Creates a pie-chart for the division of work into different categories.
+
+freelance_writing.py: Creates all plots and outputs statistics only for the writers' work.
