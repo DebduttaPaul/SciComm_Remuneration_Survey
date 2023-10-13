@@ -186,38 +186,42 @@ print ( 'Total      : ', np.sum(numbers_array) )
 print ( '\n' )
 
 
-# ~ ## Plots histogram of full-timers' salaries.
-# ~ labels, counts = np.unique( full_timer_full_salary, return_counts=True )
-# ~ inds = [6, 2, 3, 4, 1, 0, 5]
-# ~ labels = labels[inds]; labels[0] = '<25 K'; labels[-1] = '>2 Lacs'
-# ~ counts = counts[inds]
-# ~ yticks = np.arange(1, 20, 2)
-# ~ plt.bar( labels, counts )
-# ~ plt.gca().set_xticks(labels)
-# ~ plt.gca().set_yticks(yticks)
-# ~ plt.grid()
-# ~ plt.xlabel('[Indian Rupees]', labelpad=5)
-# ~ plt.ylabel('Number of respondents')
-# ~ plt.tight_layout()
-# ~ plt.savefig('./../plots/full_timerS_salaries--histogram.pdf')
-# ~ plt.clf()
-# ~ plt.close()
-# ~ #plt.show()
+## Plots histogram of full-timers' salaries.
+labels, counts = np.unique( full_timer_full_salary, return_counts=True )
+inds = [6, 2, 3, 4, 1, 0, 5]
+labels = labels[inds]; labels[0] = '<25 K'; labels[-1] = '>2 Lacs'
+counts = counts[inds]
+yticks = np.arange(1, 20, 2)
+plt.bar( labels, counts, width = 0.6, color = 'r', alpha = 0.7 )
+plt.gca().set_xticks(labels)
+plt.gca().set_yticks(yticks)
+plt.grid()
+plt.xlabel( "Full timers' monthly salary [Indian Rupees]", labelpad=7 )
+plt.ylabel( "Number of respondents" )
+plt.tight_layout()
+plt.savefig('./../plots/full_timerS_salaries--histogram.pdf')
+plt.clf()
+plt.close()
+#plt.show()
 
 
-# ~ ## Plotting histogram of full-timers' funding agency types.
-# ~ labels, counts = np.unique( full_timer_full_org, return_counts=True )
-# ~ inds = [2, 6, 0, 3, 5, 1, 4]
-# ~ counts = counts[inds]
-# ~ labels = np.array([ 'Government', 'Public institution', 'Non-profit', 'Journalistic', 'Private institution', 'For-profit', 'NA' ])
-# ~ yticks = np.arange(2, 24, 2)
-# ~ plt.bar( labels, counts )
-# ~ plt.gca().set_xticks(labels)
-# ~ plt.gca().set_yticks(yticks)
-# ~ plt.grid()
-# ~ plt.ylabel('Number of respondents')
-# ~ plt.tight_layout()
-# ~ plt.show()
+## Plotting histogram of full-timers' funding agency types.
+labels, counts = np.unique( full_timer_full_org, return_counts=True )
+inds = [2, 6, 0, 3, 5, 1, 4]
+counts = counts[inds]
+labels = np.array([ 'Government', 'Public \ninstitution', 'Non-\nprofit', 'Journalistic', 'Private \ninstitution', 'For-\nprofit', 'NA' ])
+yticks = np.arange(2, 24, 2)
+plt.bar( labels, counts, width = 0.6sa, color = 'r', alpha = 0.7 )
+plt.gca().set_xticks(labels)
+plt.gca().set_yticks(yticks)
+plt.grid()
+plt.xlabel( "Nature of organisation", labelpad=10 )
+plt.ylabel( "Number of respondents" )
+plt.tight_layout()
+plt.savefig('./../plots/full_timerS_organisations--histogram.pdf')
+plt.clf()
+plt.close()
+#plt.show()
 
 
 
