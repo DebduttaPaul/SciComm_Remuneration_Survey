@@ -11,3 +11,5 @@ comparisons.py: Creates a comparison plot of the negotiation levels in the first
 freelance--general.py: Creates a pie-chart for the division of work into different categories.
 
 freelance_writing.py: Creates all plots and outputs statistics only for freelance writers' work.
+
+Remuneration_Status_Report.pdf: The final report.
